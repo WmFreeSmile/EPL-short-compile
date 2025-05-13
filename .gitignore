@@ -1,0 +1,14 @@
+
+
+*.o
+*.lib
+
+*.def
+*.exp
+*.res
+
+
+*.exe
+*.dll
+
+
