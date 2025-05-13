@@ -22,7 +22,7 @@ ESC工具实现以下功能：
 
 # 核心库编译方法
 
-git clone xxx
+git clone https://github.com/WmFreeSmile/EPL-short-compile.git
 
 cd EPL-short-compile
 
