@@ -13,12 +13,11 @@ ESC工具实现以下功能：
 * 易语言
 * FreeBASIC
 * ecl（易语言命令行工具）
+* MinGW64
 
 # 环境配置
 
 设置 FBC_HOME=FreeBASIC编译器路径
-
-设置 PATH 让ecl可以直接通过文件名调用
 
 # 核心库编译方法
 
@@ -30,6 +29,12 @@ cd krnln
 
 make
 
-# ESC Compile命令使用方法
+# 命令使用方法
 
-compile E源码文件 [ [dll] or [nolink] ]
+compile E源码文件(不要带.e的后缀) [ [dll] or [nolink] ]  #直接将.e文件编译成.exe或者.dll
+
+def_process def文件输入 def文件输出 #删除def文件中的EDllMain导出和void导出
+
+del_drectve coff文件输入 coff文件输出 #删除coff文件中的.drectve段
+
+obj_process coff文件输入 coff文件输出 文件名 { entry or noentry} #对coff文件中的易语言固定符号进行重命名，然后将dll_call.o合并到coff文件
