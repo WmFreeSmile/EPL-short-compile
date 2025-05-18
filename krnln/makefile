@@ -4,8 +4,9 @@ AR=ar
 
 TARGET=./krnln.lib ./dll.o ./dll_call.o
 
-OBJ=./EHelp.o ./krnln.o ./krnln_fnfgets.o ./krnln_fnfputs.o ./krnln_fnMsgBox.o ./krnln_fnp2int.o ./krnln_fnStr.o ./krnln_fnWriteMem.o ./spec.o ./spec_fn_Global_AllocMem.o ./spec_fn_Global_FreeMem.o ./str.o ./DateTimeFormat.o ./krnln_fnCnvToBin.o ./bin.o ./krnln_fnBinLen.o ./krnln_fnToByte.o ./krnln_fnBJCase.o ./krnln_fnToInt.o ./krnln_fnSpaceBin.o ./GetSysDataTypeDataSize.o ./krnln_fnToShort.o ./krnln_fnGetRunPath.o ./krnln_fnChr.o ./krnln_fnVal.o
-
+OBJ=./EHelp.o ./krnln.o ./krnln_fnfgets.o ./krnln_fnfputs.o ./krnln_fnMsgBox.o ./krnln_fnp2int.o ./krnln_fnStr.o ./krnln_fnWriteMem.o ./spec.o ./spec_fn_Global_AllocMem.o ./spec_fn_Global_FreeMem.o ./str.o ./DateTimeFormat.o ./krnln_fnCnvToBin.o ./bin.o ./krnln_fnBinLen.o ./krnln_fnToByte.o ./krnln_fnBJCase.o ./krnln_fnToInt.o ./krnln_fnSpaceBin.o ./GetSysDataTypeDataSize.o ./krnln_fnToShort.o ./krnln_fnGetRunPath.o ./krnln_fnChr.o ./krnln_fnVal.o \
+	./krnln_fnWriteFile.o \
+	./krnln_fnKill.o
 
 $(TARGET):./dll.bas $(OBJ)
 	$(AR) crs ./krnln.lib $(OBJ)
@@ -87,7 +88,12 @@ $(TARGET):./dll.bas $(OBJ)
 ./krnln_fnVal.o:./krnln_fnVal.bas
 	$(FBC) -c ./krnln_fnVal.bas
 
+./krnln_fnWriteFile.o:./krnln_fnWriteFile.bas
+	$(FBC) -c ./krnln_fnWriteFile.bas
+
+./krnln_fnKill.o:./krnln_fnKill.bas
+	$(FBC) -c ./krnln_fnKill.bas
+
 .PHONY: clean
 clean:
-	del .\krnln.lib,.\dll.o,.\EHelp.o,.\krnln.o,.\krnln_fnfgets.o,.\krnln_fnfputs.o,.\krnln_fnMsgBox.o,.\krnln_fnp2int.o,.\krnln_fnStr.o,.\krnln_fnWriteMem.o,.\spec.o,.\spec_fn_Global_AllocMem.o,.\spec_fn_Global_FreeMem.o,.\str.o,.\DateTimeFormat.o,.\krnln_fnCnvToBin.o,.\bin.o,.\krnln_fnBinLen.o,.\dll_call.o,.\krnln_fnToByte.o,.\krnln_fnBJCase.o,.\krnln_fnToInt.o,.\krnln_fnSpaceBin.o,.\GetSysDataTypeDataSize.o,.\krnln_fnToShort.o,.\krnln_fnGetRunPath.o,.\krnln_fnChr.o,.\krnln_fnVal.o
-
+	del .\krnln.lib,.\dll.o,.\EHelp.o,.\krnln.o,.\krnln_fnfgets.o,.\krnln_fnfputs.o,.\krnln_fnMsgBox.o,.\krnln_fnp2int.o,.\krnln_fnStr.o,.\krnln_fnWriteMem.o,.\spec.o,.\spec_fn_Global_AllocMem.o,.\spec_fn_Global_FreeMem.o,.\str.o,.\DateTimeFormat.o,.\krnln_fnCnvToBin.o,.\bin.o,.\krnln_fnBinLen.o,.\dll_call.o,.\krnln_fnToByte.o,.\krnln_fnBJCase.o,.\krnln_fnToInt.o,.\krnln_fnSpaceBin.o,.\GetSysDataTypeDataSize.o,.\krnln_fnToShort.o,.\krnln_fnGetRunPath.o,.\krnln_fnChr.o,.\krnln_fnVal.o .\krnln_fnWriteFile.o .\krnln_fnKill.o

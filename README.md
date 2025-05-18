@@ -19,19 +19,17 @@ ESC工具实现以下功能：
 
 设置 FBC_HOME=FreeBASIC编译器路径
 
-# 核心库编译方法
+# 构建方法
 
 git clone https://github.com/WmFreeSmile/EPL-short-compile.git
 
 cd EPL-short-compile
 
-cd krnln
-
 make
 
 # 命令使用方法
 
-compile E源码文件(不要带.e的后缀) [ [dll] or [nolink] ]  #直接将.e文件编译成.exe或者.dll
+esc_compile E源码文件(不要带.e的后缀) [ [dll] or [nolink] ]  #直接将.e文件编译成.exe或者.dll
 
 def_process def文件输入 def文件输出 #删除def文件中的EDllMain导出和void导出
 
