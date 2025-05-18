@@ -27,12 +27,16 @@ cd EPL-short-compile
 
 make
 
-# 命令使用方法
+## 命令使用方法
+esc_compile E源码文件(不要带.e的后缀) [ [dll] or [dll_nomain] or [nolink] ]
+* 直接将.e文件编译成.exe或者.dll
 
-esc_compile E源码文件(不要带.e的后缀) [ [dll] or [nolink] ]  #直接将.e文件编译成.exe或者.dll
+## ETools
+def_process def文件输入 def文件输出 
+* 删除def文件中的EDllMain导出和void导出
 
-def_process def文件输入 def文件输出 #删除def文件中的EDllMain导出和void导出
+del_drectve coff文件输入 coff文件输出 
+* 删除coff文件中的.drectve段
 
-del_drectve coff文件输入 coff文件输出 #删除coff文件中的.drectve段
-
-obj_process coff文件输入 coff文件输出 文件名 { entry or noentry} #对coff文件中的易语言固定符号进行重命名，然后将dll_call.o合并到coff文件
+obj_process coff文件输入 coff文件输出 文件名 { entry or noentry}
+* 对coff文件中的易语言固定符号进行重命名，然后将dll_call.o合并到coff文件
