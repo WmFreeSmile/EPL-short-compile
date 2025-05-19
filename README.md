@@ -15,10 +15,18 @@ ESC工具实现以下功能：
 * ecl（易语言命令行工具）
 * MinGW64
 
-# 环境配置
+# 构建环境要求
+#### PATH
+* fbc32
+* ar
+* ld
+* ecl
+#### FBC_HOME
 
-设置 FBC_HOME=FreeBASIC编译器路径
-
+# 运行环境要求
+#### PATH
+* ld
+* ecl
 # 构建方法
 
 git clone https://github.com/WmFreeSmile/EPL-short-compile.git

@@ -22,7 +22,7 @@ if "%file_path%"=="" (
 	if "%2"=="dll" (
 		if exist "%file_path%.obj" if exist "%file_path%.def" (
 			%~dp0etools\def_process "%CD%\%file_path%.def" "%CD%\%file_path%.def"
-			ld -m i386pe "%file_path%.obj" "%file_path%.def" -o "%file_path%.dll" %~dp0lib\krnln.lib %~dp0lib\dll_call.o %~dp0lib\dll.o %~dp0lib\spec.lib -e _DllMainCRTStartup@12 --dll -T "%FBC_HOME%\lib\win32\fbextra.x" --stack 1048576,1048576 -s -L "%FBC_HOME%\lib\win32" -L "." "%FBC_HOME%\lib\win32\dllcrt2.o" "%FBC_HOME%\lib\win32\crtbegin.o" "%FBC_HOME%\lib\win32\fbrt0.o" "-(" -lddraw -ldxguid -lkernel32 -lgdi32 -lmsimg32 -luser32 -lversion -ladvapi32 -limm32 -luuid -lole32 -loleaut32 -lgdiplus -lcomctl32 -lpsapi -lshell32 -lcomdlg32 -lshlwapi -luxtheme -lfb -lgcc -lmsvcrt -lmingw32 -lmingwex -lmoldname -lgcc_eh "-)" "%FBC_HOME%\lib\win32\crtend.o"
+			ld -m i386pe --dll --stack 1048576,1048576 -s -e _DllMainCRTStartup@12 -o "%file_path%.dll" "%file_path%.obj" "%file_path%.def" %~dp0lib\krnln.lib %~dp0lib\dll_call.o %~dp0lib\dll.o %~dp0lib\spec.lib -T "%~dp0lib\fbextra.x" "%~dp0\lib\dllcrt2.o" -L "%~dp0\lib" "-(" -lkernel32 -lgdi32 -lmsimg32 -luser32 -lversion -ladvapi32 -limm32 -lshell32 -lole32 -luuid -loleaut32 -lcomctl32 -luxtheme -lpsapi -lcomdlg32 -lshlwapi -lwinmm -lddraw -ldxguid -lgdiplus -lfb -lgcc -lmsvcrt -lmingw32 -lmingwex -lmoldname -lgcc_eh "-)"
 		)
 		
 		del "%file_path%.def"
@@ -40,7 +40,7 @@ if "%file_path%"=="" (
 	if "%2"=="dll_nomain" (
 		if exist "%file_path%.obj" if exist "%file_path%.def" (
 			%~dp0etools\def_process "%CD%\%file_path%.def" "%CD%\%file_path%.def"
-			ld -m i386pe "%file_path%.obj" "%file_path%.def" -o "%file_path%.dll" %~dp0lib\krnln.lib %~dp0lib\dll_call.o %~dp0lib\dll_nomain.o %~dp0lib\spec.lib -e _DllMainCRTStartup@12 --dll -T "%FBC_HOME%\lib\win32\fbextra.x" --stack 1048576,1048576 -s -L "%FBC_HOME%\lib\win32" -L "." "%FBC_HOME%\lib\win32\dllcrt2.o" "%FBC_HOME%\lib\win32\crtbegin.o" "%FBC_HOME%\lib\win32\fbrt0.o" "-(" -lddraw -ldxguid -lkernel32 -lgdi32 -lmsimg32 -luser32 -lversion -ladvapi32 -limm32 -luuid -lole32 -loleaut32 -lgdiplus -lcomctl32 -lpsapi -lshell32 -lcomdlg32 -lshlwapi -luxtheme -lfb -lgcc -lmsvcrt -lmingw32 -lmingwex -lmoldname -lgcc_eh "-)" "%FBC_HOME%\lib\win32\crtend.o"
+			ld -m i386pe --dll --stack 1048576,1048576 -s -e _DllMainCRTStartup@12 -o "%file_path%.dll" "%file_path%.obj" "%file_path%.def" %~dp0lib\krnln.lib %~dp0lib\dll_call.o %~dp0lib\dll_nomain.o %~dp0lib\spec.lib -T "%~dp0lib\fbextra.x" "%~dp0\lib\dllcrt2.o" -L "%~dp0\lib" "-(" -lkernel32 -lgdi32 -lmsimg32 -luser32 -lversion -ladvapi32 -limm32 -lshell32 -lole32 -luuid -loleaut32 -lcomctl32 -luxtheme -lpsapi -lcomdlg32 -lshlwapi -lwinmm -lddraw -ldxguid -lgdiplus -lfb -lgcc -lmsvcrt -lmingw32 -lmingwex -lmoldname -lgcc_eh "-)"
 		)
 		
 		del "%file_path%.def"
@@ -61,7 +61,7 @@ if "%file_path%"=="" (
 	
 	if "%2"=="" (
 		if exist "%file_path%.obj" (
-			ld -m i386pe "%file_path%.obj" %~dp0lib\krnln.lib %~dp0lib\dll_call.o %~dp0lib\spec.lib -e _krnl_MMain -o "%file_path%.exe" -T "%FBC_HOME%\lib\win32\fbextra.x" --stack 1048576,1048576 -s -L "%FBC_HOME%\lib\win32" -L "." "%FBC_HOME%\lib\win32\crt2.o" "%FBC_HOME%\lib\win32\crtbegin.o" "%FBC_HOME%\lib\win32\fbrt0.o" "-(" -lkernel32 -lgdi32 -lmsimg32 -luser32 -lversion -ladvapi32 -limm32 -lshell32 -lole32 -luuid -loleaut32 -lcomctl32 -luxtheme -lpsapi -lcomdlg32 -lshlwapi -lwinmm -lddraw -ldxguid -lgdiplus -lfb -lgcc -lmsvcrt -lmingw32 -lmingwex -lmoldname -lgcc_eh "-)" "%FBC_HOME%\lib\win32\crtend.o" 
+			ld -m i386pe --stack 1048576,1048576 -s -e _krnl_MMain -o "%file_path%.exe" "%file_path%.obj" "%~dp0lib\krnln.lib" "%~dp0lib\dll_call.o" "%~dp0lib\spec.lib" -T "%~dp0lib\fbextra.x" "%~dp0\lib\crt2.o" -L "%~dp0\lib" "-(" -lkernel32 -lgdi32 -lmsimg32 -luser32 -lversion -ladvapi32 -limm32 -lshell32 -lole32 -luuid -loleaut32 -lcomctl32 -luxtheme -lpsapi -lcomdlg32 -lshlwapi -lwinmm -lddraw -ldxguid -lgdiplus -lfb -lgcc -lmsvcrt -lmingw32 -lmingwex -lmoldname -lgcc_eh "-)"
 		)
 		del "%file_path%.obj"
 		del "%file_path%.res"
