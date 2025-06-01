@@ -33,7 +33,7 @@ function BJCase(text as string) as string
     
     dim pszLast as zstring ptr=ptext+nLen
     dim pszFirst as zstring ptr=ptext
-    dim pszSrc as zstring ptr=allocate(nLen+1)
+    dim pszSrc as zstring ptr=Host_Malloc(nLen+1)
     dim pszTmp as zstring ptr=pszSrc
     
     dim sSublen as integer
@@ -60,12 +60,12 @@ function BJCase(text as string) as string
     
     nLen=Len(*pszSrc)
     dim nBufLen as integer=nLen+1
-    dim pBJText as zstring ptr=allocate(nBufLen)
+    dim pBJText as zstring ptr=Host_Malloc(nBufLen)
     
     LCMapString(2052,LCMAP_HALFWIDTH,pszSrc,nLen,pBJText,nBufLen)
-    deallocate(pszSrc)
+    Host_Free(pszSrc)
     function=*pBJText
-    deallocate(pBJText)
+    Host_Free(pBJText)
 end function
 
 extern "c"

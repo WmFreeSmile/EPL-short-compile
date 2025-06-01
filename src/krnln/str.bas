@@ -5,7 +5,7 @@
 function CloneTextData(ps as string) as zstring ptr
 	dim nTextLen as integer=len(ps)
 	
-	dim pd as zstring ptr=allocate(nTextLen+1)
+	dim pd as zstring ptr=Host_Malloc(nTextLen+1)
 	memcpy(pd,strptr(ps),nTextLen)
 	cast(ubyte ptr,pd)[nTextLen]=0
 	function=pd
@@ -31,7 +31,7 @@ function SDataToStr(pArgInf as PMDATA_INF) as zstring ptr
 				'先不管日期时间
 		end select
 		
-		pstr=allocate(len(_str)+1)
+		pstr=Host_Malloc(len(_str)+1)
 		if pstr>0 then
 			*pstr=_str
 		end if

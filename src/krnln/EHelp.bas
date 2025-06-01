@@ -41,3 +41,16 @@ function GetDataTypeType(dtDataType as DATA_TYPE) as integer
 	dim dw as integer=dtDataType and &hC0000000
 	function=iif(dw=DTM_SYS_DATA_TYPE_MASK,DTT_IS_SYS_DATA_TYPE,iif(dw=DTM_USER_DATA_TYPE_MASK,DTT_IS_USER_DATA_TYPE,DTT_IS_LIB_DATA_TYPE))
 end function
+
+
+function Host_Malloc(size as integer) as any ptr
+	function=allocate(size)
+end function
+
+sub Host_Free(addr as any ptr)
+	deallocate(addr)
+end sub
+
+function Host_Realloc(addr as any ptr,size as integer) as any ptr
+	function=reallocate(addr,size)
+end function

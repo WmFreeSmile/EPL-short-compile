@@ -131,19 +131,19 @@ sub krnl_MWriteProperty cdecl()
 end sub
 
 function krnl_MMalloc cdecl(uBytes as ulong) as any ptr
-	dim addr as any ptr=allocate(uBytes)
+	dim addr as any ptr=Host_Malloc(uBytes)
 	'print "malloc",uBytes,addr
 	function=addr
 end function
 
 function krnl_MRealloc cdecl(lpMemory as any ptr,uBytes as ulong) as any ptr
 	
-	function=reallocate(lpMemory,uBytes)
+	function=Host_Realloc(lpMemory,uBytes)
 end function
 
 sub krnl_MFree cdecl(lpMemory as any ptr)
 	'print "free",lpMemory
-	deallocate(lpMemory)
+	Host_Free(lpMemory)
 end sub
 
 sub krnl_MExitProcess cdecl(nExitCode as long)

@@ -7,7 +7,7 @@ function CloneBinData(pData as ubyte ptr,nDataSize as integer) as ubyte ptr
         return 0
     end if
     
-    dim pd as ubyte ptr=allocate(sizeof(integer)*2+nDataSize)
+    dim pd as ubyte ptr=Host_Malloc(sizeof(integer)*2+nDataSize)
     *cast(integer ptr,pd)=1
     *cast(integer ptr,pd+sizeof(integer))=nDataSize
     memcpy(pd+sizeof(integer)*2,pData,nDataSize)

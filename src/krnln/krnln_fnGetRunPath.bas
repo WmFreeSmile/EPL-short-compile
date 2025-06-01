@@ -28,7 +28,7 @@ sub krnln_fnGetRunPath cdecl(pRetData as PMDATA_INF,uArgCount as ulong, pArgInf 
     end if
     
     nLen=Len(strFile)
-    dim pText as zstring ptr=allocate(nLen+1)
+    dim pText as zstring ptr=Host_Malloc(nLen+1)
     strcpy(pText,@strFile)
     pRetData->m_pText=pText
 end sub

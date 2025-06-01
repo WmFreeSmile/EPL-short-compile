@@ -32,7 +32,8 @@ OBJ=EHelp.o \
 	krnln_fnChr.o \
 	krnln_fnVal.o \
 	krnln_fnWriteFile.o \
-	krnln_fnKill.o
+	krnln_fnKill.o \
+	krnln_fnReadFile.o
 
 
 all:CHECK_DIR_STR $(TARGET)
@@ -119,6 +120,9 @@ krnln_fnWriteFile.o:krnln_fnWriteFile.bas
 
 krnln_fnKill.o:krnln_fnKill.bas
 	$(FBC) -c krnln_fnKill.bas
+
+krnln_fnReadFile.o:krnln_fnReadFile.bas
+	$(FBC) -c krnln_fnReadFile.bas
 
 .PHONY: clean
 clean:

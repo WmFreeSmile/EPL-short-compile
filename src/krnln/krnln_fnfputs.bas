@@ -55,7 +55,7 @@ sub krnln_fnfputs cdecl(pRetData as PMDATA_INF,uArgCount as ulong, pArgInf as PM
 		end if
 		
 		if bNeedFree then
-			deallocate(pData)
+			Host_Free(pData)
 		end if
 	next
 end sub
