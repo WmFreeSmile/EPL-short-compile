@@ -1,1 +1,1 @@
-esc_compile sample
+esc_compile sample.e -o sample.exe
