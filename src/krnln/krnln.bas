@@ -156,14 +156,6 @@ sub krnl_MExitProcess cdecl(nExitCode as long)
 	end(nExitCode)
 end sub
 
-sub krnl_MMain cdecl()
-	InitContext()
-	
-	dim ret as integer=EStartup()
-	
-	krnl_MExitProcess(ret)
-end sub
-
 sub krnl_MMessageLoop cdecl()
 	'print "krnl_MMessageLoop"
 end sub
@@ -180,9 +172,48 @@ sub krnl_MAFindClose cdecl()
 	
 end sub
 
-sub krnl_MACopyConstAry cdecl()
-	
-end sub
+function krnl_MACopyConstAry cdecl(a1 as long,a2 as any ptr ptr) as long
+    dim result as long
+    dim v3 as any ptr
+    dim v4 as long
+    dim v5 as long
+    dim v6 as long
+    dim v7 as long
+    dim v8 as ulong
+    dim v9 as long
+    dim v10 as byte
+    
+    if AppContext->PESizeOfImage=0 then
+        GetPESizeOfImage()
+    end if
+    
+    v3=*a2
+    
+    if(AppContext->PEAddrrStart <= cast(ulong,v3) andalso cast(ulong,v3) <= AppContext->PEAddrrEnd) then
+        v5=*cast(ulong ptr,v3)
+        v6=cast(long,cast(zstring ptr,v3)+4)
+        v4=1
+        if(*cast(ulong ptr,v3)>0) then
+            do
+                v7=*cast(ulong ptr,v6)
+                v6+=4
+                v4*=v7
+                v5=v5-1
+            loop until v5
+        end if
+        v9=a1*v4-cast(ulong,v3)
+        v10=(v6+v9=0)
+        result=v6+v9
+        v8=result
+        if(not v10) then
+            result=cast(long,Host_Malloc(result))
+            memcpy(cast(any ptr,result),v3,v8)
+            *a2=cast(any ptr,result)
+        end if
+    end if
+    
+    function=result
+end function
 
 sub krnl_MANotifyFreeFunc cdecl(pNotify as any ptr)
 	AppContext->ExitCallBack=pNotify
@@ -227,9 +258,10 @@ sub krnl_ProcessNotifyLib stdcall(nVoidArg0 as integer,nVoidArg1 as integer,nVoi
 	
 end sub
 
-
 function WinMain stdcall(a as integer,b as integer,c as integer,d as integer) as integer
+	InitContext()
 	
+	function=EStartup()
 end function
 
 end extern

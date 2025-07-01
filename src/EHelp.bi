@@ -3,12 +3,7 @@
 
 extern "c"
 
-
-
 declare function EStartup() as integer
-
-declare sub InitContext()
-declare sub FreeContext()
 
 declare sub krnl_MExitProcess cdecl(nExitCode as long)
 
@@ -46,12 +41,16 @@ end type
 
 type EContext
 	ExitCallBack as any ptr
+	
+	InstanceHandle as HANDLE
+	PESizeOfImage as ulong
+	PEAddrrStart as ulong
+	PEAddrrEnd as ulong
+	
 end type
 
 
 type DATE_TYPE as double
-type BOOL as long
-
 
 type STATMENT_CALL_DATA
 	m_dwStatmentSubCodeAdr as long
@@ -118,9 +117,9 @@ type PMDATA_INF as MDATA_INF ptr
 
 'extern __eapp_info As EAPPINFO
 
-extern AppContext as EContext ptr
-
 end extern
+
+
 
 
 #define	DT_IS_ARY					&H20000000
@@ -154,6 +153,15 @@ end extern
 #define	DTM_SYS_DATA_TYPE_MASK		&h80000000
 #define	DTM_USER_DATA_TYPE_MASK		&h40000000
 #define	DTM_LIB_DATA_TYPE_MASK		&h00000000
+
+
+
+
+extern AppContext as EContext ptr
+
+declare sub InitContext()
+declare sub FreeContext()
+declare sub GetPESizeOfImage()
 
 
 declare function GetAryElementInf(pAryData as any ptr,pnElementCount as integer ptr) as ubyte ptr

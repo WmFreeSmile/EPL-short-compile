@@ -557,7 +557,7 @@ sub main()
     
     select case CompileMode
         case exe
-            compile_command=!"ld -m i386pe --stack 1048576,1048576 -s -e _krnl_MMain "
+            compile_command=!"ld -m i386pe --stack 1048576,1048576 -s "
             
             select case subsystem
                 case windows
@@ -599,7 +599,7 @@ sub main()
             kill(def_path)
             SaveFile(def_path,def_buffer())
             
-            compile_command=!"ld -m i386pe --dll --stack 1048576,1048576 -s -e _DllMainCRTStartup@12 "+ _
+            compile_command=!"ld -m i386pe --dll --stack 1048576,1048576 -s "+ _
                 !"-o \""+full_target+!"\" " + _
                 !"\""+obj_path+!"\" "+ _
                 !"\""+def_path+!"\" "+ _

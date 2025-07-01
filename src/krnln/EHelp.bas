@@ -10,6 +10,19 @@ sub FreeContext()
 	delete AppContext
 end sub
 
+sub GetPESizeOfImage()
+    dim module as byte ptr
+    
+    if AppContext->InstanceHandle then
+        module=AppContext->InstanceHandle
+    else
+        module=cast(HANDLE,GetModuleHandleA(0))
+    end if
+    
+    AppContext->PESizeOfImage=cast(PIMAGE_NT_HEADERS,module+cast(PIMAGE_DOS_HEADER,module)->e_lfanew)->OptionalHeader.SizeOfImage
+    AppContext->PEAddrrStart=cast(long,module)
+    AppContext->PEAddrrEnd=cast(long,module)+AppContext->PESizeOfImage
+end sub
 
 function GetAryElementInf(pAryData as any ptr,pnElementCount as integer ptr) as ubyte ptr
 	dim pnData as long ptr=cast(any ptr,pAryData)

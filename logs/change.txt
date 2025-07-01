@@ -1,0 +1,36 @@
+2025-7-2 更新：
+
+添加下列核心库子程序：
+krnln_fnIDiv 整除
+krnln_fnMod 求余数
+krnln_fnSgn 取符号
+krnln_fnAbs 取绝对值
+krnln_fnInt 取整
+krnln_fnFix 绝对取整
+krnln_fnRound 四舍五入
+krnln_fnPow 求次方
+krnln_fnSqr 求平方根
+krnln_fnSin 求正弦
+krnln_fnCos 求余弦
+krnln_fnTan 求正切
+krnln_fnAtn 求反正切
+krnln_fnLog 求自然对数
+krnln_fnExp 求反对数
+krnln_fnIsCalcOK 是否运算正确
+krnln_fnRandomize 置随机数种子
+krnln_fnRnd 取随机数
+
+krnln_fnTextLikeEqu 近似等于
+
+krnln_fnBNot 位取反
+krnln_fnBAnd 位与
+krnln_fnBOr 位或
+krnln_fnBXor 位异或
+krnln_fnSHL 左移
+krnln_fnSHR 右移
+krnln_fnMAKELONG 合并整数
+krnln_fnMAKEWORD 合并短整数
+
+krnln_fnSortAry 数组排序
+krnln_fnZeroAry 数组清零
+

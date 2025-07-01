@@ -33,8 +33,36 @@ OBJ=EHelp.o \
 	krnln_fnVal.o \
 	krnln_fnWriteFile.o \
 	krnln_fnKill.o \
-	krnln_fnReadFile.o
-
+	krnln_fnReadFile.o \
+	krnln_fnIDiv.o \
+	krnln_fnMod.o \
+	krnln_fnSgn.o \
+	krnln_fnAbs.o \
+	krnln_fnInt.o \
+	krnln_fnFix.o \
+	krnln_fnRound.o \
+	krnln_fnPow.o \
+	krnln_fnSqr.o \
+	krnln_fnSin.o \
+	krnln_fnCos.o \
+	krnln_fnTan.o \
+	krnln_fnAtn.o \
+	krnln_fnLog.o \
+	krnln_fnExp.o \
+	krnln_fnIsCalcOK.o \
+	krnln_fnRandomize.o \
+	krnln_fnRnd.o \
+	krnln_fnTextLikeEqu.o \
+	krnln_fnBNot.o \
+	krnln_fnBAnd.o \
+	krnln_fnBOr.o \
+	krnln_fnBXor.o \
+	krnln_fnSHL.o \
+	krnln_fnSHR.o \
+	krnln_fnMAKELONG.o \
+	krnln_fnMAKEWORD.o \
+	krnln_fnSortAry.o \
+	krnln_fnZeroAry.o
 
 all:CHECK_DIR_STR $(TARGET)
 
@@ -123,6 +151,101 @@ krnln_fnKill.o:krnln_fnKill.bas
 
 krnln_fnReadFile.o:krnln_fnReadFile.bas
 	$(FBC) -c krnln_fnReadFile.bas
+
+
+
+krnln_fnIDiv.o:krnln_fnIDiv.bas
+	$(FBC) -c krnln_fnIDiv.bas
+
+krnln_fnMod.o:krnln_fnMod.bas
+	$(FBC) -c krnln_fnMod.bas
+
+krnln_fnSgn.o:krnln_fnSgn.bas
+	$(FBC) -c krnln_fnSgn.bas
+
+krnln_fnAbs.o:krnln_fnAbs.bas
+	$(FBC) -c krnln_fnAbs.bas
+
+krnln_fnInt.o:krnln_fnInt.bas
+	$(FBC) -c krnln_fnInt.bas
+
+krnln_fnFix.o:krnln_fnFix.bas
+	$(FBC) -c krnln_fnFix.bas
+
+krnln_fnRound.o:krnln_fnRound.bas
+	$(FBC) -c krnln_fnRound.bas
+
+krnln_fnPow.o:krnln_fnPow.bas
+	$(FBC) -c krnln_fnPow.bas
+
+krnln_fnSqr.o:krnln_fnSqr.bas
+	$(FBC) -c krnln_fnSqr.bas
+
+krnln_fnSin.o:krnln_fnSin.bas
+	$(FBC) -c krnln_fnSin.bas
+
+krnln_fnCos.o:krnln_fnCos.bas
+	$(FBC) -c krnln_fnCos.bas
+
+krnln_fnTan.o:krnln_fnTan.bas
+	$(FBC) -c krnln_fnTan.bas
+
+krnln_fnAtn.o:krnln_fnAtn.bas
+	$(FBC) -c krnln_fnAtn.bas
+
+krnln_fnLog.o:krnln_fnLog.bas
+	$(FBC) -c krnln_fnLog.bas
+
+krnln_fnExp.o:krnln_fnExp.bas
+	$(FBC) -c krnln_fnExp.bas
+
+krnln_fnIsCalcOK.o:krnln_fnIsCalcOK.bas
+	$(FBC) -c krnln_fnIsCalcOK.bas
+
+krnln_fnRandomize.o:krnln_fnRandomize.bas
+	$(FBC) -c krnln_fnRandomize.bas
+
+krnln_fnRnd.o:krnln_fnRnd.bas
+	$(FBC) -c krnln_fnRnd.bas
+
+
+krnln_fnTextLikeEqu.o:krnln_fnTextLikeEqu.bas
+	$(FBC) -c krnln_fnTextLikeEqu.bas
+
+
+krnln_fnBNot.o:krnln_fnBNot.bas
+	$(FBC) -c krnln_fnBNot.bas
+
+krnln_fnBAnd.o:krnln_fnBAnd.bas
+	$(FBC) -c krnln_fnBAnd.bas
+
+krnln_fnBOr.o:krnln_fnBOr.bas
+	$(FBC) -c krnln_fnBOr.bas
+
+krnln_fnBXor.o:krnln_fnBXor.bas
+	$(FBC) -c krnln_fnBXor.bas
+
+krnln_fnSHL.o:krnln_fnSHL.bas
+	$(FBC) -c krnln_fnSHL.bas
+
+krnln_fnSHR.o:krnln_fnSHR.bas
+	$(FBC) -c krnln_fnSHR.bas
+
+krnln_fnMAKELONG.o:krnln_fnMAKELONG.bas
+	$(FBC) -c krnln_fnMAKELONG.bas
+
+krnln_fnMAKEWORD.o:krnln_fnMAKEWORD.bas
+	$(FBC) -c krnln_fnMAKEWORD.bas
+
+
+krnln_fnSortAry.o:krnln_fnSortAry.bas
+	$(FBC) -c krnln_fnSortAry.bas
+
+krnln_fnZeroAry.o:krnln_fnZeroAry.bas
+	$(FBC) -c krnln_fnZeroAry.bas
+
+
+
 
 .PHONY: clean
 clean:

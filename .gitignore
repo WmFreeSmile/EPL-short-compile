@@ -1,6 +1,7 @@
 target/
 
 helo.txt
+log.txt
 
 *.o
 *.obj
