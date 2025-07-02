@@ -5,21 +5,21 @@
 '#include Once "win/shlwapi.bi" 'ln 198  
 #include once "str.bi"
 
-'ÎÄ±¾²Ù×÷ - µ½°ë½Ç
+'æ–‡æœ¬æ“ä½œ - åˆ°åŠè§’
 /'
-    µ÷ÓÃ¸ñÊ½£º ¡´ÎÄ±¾ĞÍ¡µ µ½°ë½Ç £¨ÎÄ±¾ĞÍ Óû±ä»»µÄÎÄ±¾£© - ÏµÍ³ºËĞÄÖ§³Ö¿â->ÎÄ±¾²Ù×÷
-    Ó¢ÎÄÃû³Æ£ºBJCase
-    ½«ÎÄ±¾ÖĞµÄÈ«½Ç×ÖÄ¸¡¢¿Õ¸ñ»òÊı×Ö±ä»»Îª°ë½Ç£¬·µ»Ø±ä»»ºóµÄ½á¹ûÎÄ±¾¡£±¾ÃüÁîÎª³õ¼¶ÃüÁî¡£
-    ²ÎÊı<1>µÄÃû³ÆÎª¡°Óû±ä»»µÄÎÄ±¾¡±£¬ÀàĞÍÎª¡°ÎÄ±¾ĞÍ£¨text£©¡±¡£
+    è°ƒç”¨æ ¼å¼ï¼š ã€ˆæ–‡æœ¬å‹ã€‰ åˆ°åŠè§’ ï¼ˆæ–‡æœ¬å‹ æ¬²å˜æ¢çš„æ–‡æœ¬ï¼‰ - ç³»ç»Ÿæ ¸å¿ƒæ”¯æŒåº“->æ–‡æœ¬æ“ä½œ
+    è‹±æ–‡åç§°ï¼šBJCase
+    å°†æ–‡æœ¬ä¸­çš„å…¨è§’å­—æ¯ã€ç©ºæ ¼æˆ–æ•°å­—å˜æ¢ä¸ºåŠè§’ï¼Œè¿”å›å˜æ¢åçš„ç»“æœæ–‡æœ¬ã€‚æœ¬å‘½ä»¤ä¸ºåˆçº§å‘½ä»¤ã€‚
+    å‚æ•°<1>çš„åç§°ä¸ºâ€œæ¬²å˜æ¢çš„æ–‡æœ¬â€ï¼Œç±»å‹ä¸ºâ€œæ–‡æœ¬å‹ï¼ˆtextï¼‰â€ã€‚
 
-' Êı×Ö·¶Î§163¿ªÍ·£¬176--185
-' ´óĞ´×ÖÄ¸£¬163¿ªÍ·£¬193--218
-' Ğ¡Ğ´×ÖÄ¸£¬163¿ªÍ·£¬225--250
-' ///////////ÒÔÉÏÎªÈ«½ÇµÄ£¬ÏÂÃæÊÇ°ë½ÇµÄ
-' Êı×Ö·¶Î§£¬48--57
-' ´óĞ´×ÖÄ¸£¬65--90
-' Ğ¡Ğ´×ÖÄ¸£¬97-122
-µ½×Ö½Ú¼¯ (¡°£®£­¡±)  ' 163,174,163,173
+' æ•°å­—èŒƒå›´163å¼€å¤´ï¼Œ176--185
+' å¤§å†™å­—æ¯ï¼Œ163å¼€å¤´ï¼Œ193--218
+' å°å†™å­—æ¯ï¼Œ163å¼€å¤´ï¼Œ225--250
+' ///////////ä»¥ä¸Šä¸ºå…¨è§’çš„ï¼Œä¸‹é¢æ˜¯åŠè§’çš„
+' æ•°å­—èŒƒå›´ï¼Œ48--57
+' å¤§å†™å­—æ¯ï¼Œ65--90
+' å°å†™å­—æ¯ï¼Œ97-122
+åˆ°å­—èŠ‚é›† (â€œï¼ï¼â€)  ' 163,174,163,173
 '/
 
 
@@ -39,7 +39,7 @@ function BJCase(text as string) as string
     dim sSublen as integer
     
     while true
-        dim pPos as zstring ptr=strstr(pszFirst,"£Ü")
+        dim pPos as zstring ptr=strstr(pszFirst,"ï¼¼")
         if pPos<=0 then exit while
         sSublen=pPos-pszFirst
         if sSublen>0 then
@@ -56,13 +56,14 @@ function BJCase(text as string) as string
         pszTmp+=sSublen
     end if
     
-    cast(ubyte ptr,pszTmp)[0]=asc(!"\0")
+    cast(ubyte ptr,pszTmp)[0]=0
     
     nLen=Len(*pszSrc)
     dim nBufLen as integer=nLen+1
     dim pBJText as zstring ptr=Host_Malloc(nBufLen)
     
     LCMapString(2052,LCMAP_HALFWIDTH,pszSrc,nLen,pBJText,nBufLen)
+    pBJText[nLen]=0
     Host_Free(pszSrc)
     function=*pBJText
     Host_Free(pBJText)

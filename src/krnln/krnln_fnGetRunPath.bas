@@ -2,11 +2,11 @@
 #include once "../EHelp.bi"
 #include Once "crt/string.bi" 'ln 25
 
-'������ȡ - ȡ����Ŀ¼
+'环境存取 - 取运行目录
 /'
-    ���ø�ʽ�� ���ı��͡� ȡ����Ŀ¼ ���� - ϵͳ����֧�ֿ�->������ȡ
-    Ӣ�����ƣ�GetRunPath
-    ȡ��ǰ��ִ�е��׳����ļ�������Ŀ¼��������Ϊ�������
+    调用格式： 〈文本型〉 取运行目录 （） - 系统核心支持库->环境存取
+    英文名称：GetRunPath
+    取当前被执行的易程序文件所处的目录。本命令为初级命令。
 '/
 
 extern "c"

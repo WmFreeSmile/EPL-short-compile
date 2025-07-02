@@ -62,7 +62,37 @@ OBJ=EHelp.o \
 	krnln_fnMAKELONG.o \
 	krnln_fnMAKEWORD.o \
 	krnln_fnSortAry.o \
-	krnln_fnZeroAry.o
+	krnln_fnZeroAry.o \
+	FreeAryElement.o \
+	krnln_fnGetCmdLine.o \
+	krnln_fnGetRunFileName.o \
+	krnln_fnGetEnv.o \
+	krnln_fnPutEnv.o \
+	krnln_fnLen.o \
+	krnln_fnLeft.o \
+	krnln_fnRight.o \
+	krnln_fnMid.o \
+	krnln_fnAsc.o \
+	krnln_fnInStr.o \
+	krnln_fnInStrRev.o \
+	krnln_fnUCase.o \
+	krnln_fnLCase.o \
+	krnln_fnQJCase.o \
+	krnln_fnTrim.o \
+	krnln_fnLTrim.o \
+	krnln_fnRTrim.o \
+	krnln_fnTrimAll.o \
+	krnln_fnReplaceText.o \
+	krnln_fnRpSubText.o \
+	krnln_fnSpace.o \
+	krnln_fnString.o \
+	krnln_fnStrComp.o \
+	krnln_fnSplit.o \
+	krnln_fnpstr.o \
+	krnln_fnStrToUTF8.o \
+	krnln_fnUTF8ToStr.o \
+	krnln_fnStrToUTF16.o \
+	krnln_fnUTF16ToStr.o
 
 all:CHECK_DIR_STR $(TARGET)
 
@@ -244,6 +274,99 @@ krnln_fnSortAry.o:krnln_fnSortAry.bas
 krnln_fnZeroAry.o:krnln_fnZeroAry.bas
 	$(FBC) -c krnln_fnZeroAry.bas
 
+
+
+FreeAryElement.o:FreeAryElement.bas
+	$(FBC) -c FreeAryElement.bas
+
+
+krnln_fnGetCmdLine.o:krnln_fnGetCmdLine.bas
+	$(FBC) -c krnln_fnGetCmdLine.bas
+
+krnln_fnGetRunFileName.o:krnln_fnGetRunFileName.bas
+	$(FBC) -c krnln_fnGetRunFileName.bas
+
+krnln_fnGetEnv.o:krnln_fnGetEnv.bas
+	$(FBC) -c krnln_fnGetEnv.bas
+
+krnln_fnPutEnv.o:krnln_fnPutEnv.bas
+	$(FBC) -c krnln_fnPutEnv.bas
+
+
+krnln_fnLen.o:krnln_fnLen.bas
+	$(FBC) -c krnln_fnLen.bas
+
+krnln_fnLeft.o:krnln_fnLeft.bas
+	$(FBC) -c krnln_fnLeft.bas
+
+krnln_fnRight.o:krnln_fnRight.bas
+	$(FBC) -c krnln_fnRight.bas
+
+krnln_fnMid.o:krnln_fnMid.bas
+	$(FBC) -c krnln_fnMid.bas
+
+krnln_fnAsc.o:krnln_fnAsc.bas
+	$(FBC) -c krnln_fnAsc.bas
+
+krnln_fnInStr.o:krnln_fnInStr.bas
+	$(FBC) -c krnln_fnInStr.bas
+
+krnln_fnInStrRev.o:krnln_fnInStrRev.bas
+	$(FBC) -c krnln_fnInStrRev.bas
+
+krnln_fnUCase.o:krnln_fnUCase.bas
+	$(FBC) -c krnln_fnUCase.bas
+
+krnln_fnLCase.o:krnln_fnLCase.bas
+	$(FBC) -c krnln_fnLCase.bas
+
+krnln_fnQJCase.o:krnln_fnQJCase.bas
+	$(FBC) -c krnln_fnQJCase.bas
+
+krnln_fnTrim.o:krnln_fnTrim.bas
+	$(FBC) -c krnln_fnTrim.bas
+
+krnln_fnLTrim.o:krnln_fnLTrim.bas
+	$(FBC) -c krnln_fnLTrim.bas
+
+krnln_fnRTrim.o:krnln_fnRTrim.bas
+	$(FBC) -c krnln_fnRTrim.bas
+
+krnln_fnTrimAll.o:krnln_fnTrimAll.bas
+	$(FBC) -c krnln_fnTrimAll.bas
+
+krnln_fnReplaceText.o:krnln_fnReplaceText.bas
+	$(FBC) -c krnln_fnReplaceText.bas
+
+krnln_fnRpSubText.o:krnln_fnRpSubText.bas
+	$(FBC) -c krnln_fnRpSubText.bas
+
+krnln_fnSpace.o:krnln_fnSpace.bas
+	$(FBC) -c krnln_fnSpace.bas
+
+krnln_fnString.o:krnln_fnString.bas
+	$(FBC) -c krnln_fnString.bas
+
+krnln_fnStrComp.o:krnln_fnStrComp.bas
+	$(FBC) -c krnln_fnStrComp.bas
+
+krnln_fnSplit.o:krnln_fnSplit.bas
+	$(FBC) -c krnln_fnSplit.bas
+
+krnln_fnpstr.o:krnln_fnpstr.bas
+	$(FBC) -c krnln_fnpstr.bas
+
+krnln_fnStrToUTF8.o:krnln_fnStrToUTF8.bas
+	$(FBC) -c krnln_fnStrToUTF8.bas
+
+krnln_fnUTF8ToStr.o:krnln_fnUTF8ToStr.bas
+	$(FBC) -c krnln_fnUTF8ToStr.bas
+
+krnln_fnStrToUTF16.o:krnln_fnStrToUTF16.bas
+	$(FBC) -c krnln_fnStrToUTF16.bas
+
+krnln_fnUTF16ToStr.o:krnln_fnUTF16ToStr.bas
+	$(FBC) -c krnln_fnUTF16ToStr.bas
 
 
 

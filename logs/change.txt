@@ -34,3 +34,35 @@ krnln_fnMAKEWORD 合并短整数
 krnln_fnSortAry 数组排序
 krnln_fnZeroAry 数组清零
 
+2025-7-3 更新：
+
+添加下列核心库子程序：
+
+krnln_fnGetCmdLine 取命令行
+krnln_fnGetRunFileName 取执行文件名
+krnln_fnGetEnv 读环境变量
+krnln_fnPutEnv 写环境变量
+
+krnln_fnLen 取文本长度
+krnln_fnLeft 取文本左边
+krnln_fnRight 取文本右边
+krnln_fnMid 取文本中间
+krnln_fnAsc 取代码
+krnln_fnInStr 寻找文本
+krnln_fnInStrRev 倒找文本
+krnln_fnUCase 到大写
+krnln_fnLCase 到小写
+krnln_fnQJCase 到全角
+krnln_fnTrim 删首尾空
+krnln_fnLTrim 删首空
+krnln_fnRTrim 删尾空
+krnln_fnTrimAll 删全部空
+krnln_fnReplaceText 文本替换
+krnln_fnSpace 取空白文本
+krnln_fnString 取重复文本
+krnln_fnStrComp 文本比较
+krnln_fnpstr 指针到文本
+krnln_fnStrToUTF8 文本到UTF8
+krnln_fnUTF8ToStr UTF8到文本
+krnln_fnStrToUTF16 文本到UTF16
+krnln_fnUTF16ToStr UTF16到文本

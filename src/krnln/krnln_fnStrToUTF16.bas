@@ -1,0 +1,62 @@
+#include once "../EHelp.bi"
+
+/'
+    调用格式： 〈字节集〉 文本到UTF16 （文本型 待转换的文本） - 系统核心支持库->文本操作
+    英文名称：StrToUTF16
+    将所指定文本转换到UTF16格式后返回,注意所返回UTF16文本数据包括结束零字符.本命令为初级命令。
+    参数<1>的名称为“待转换的文本”，类型为“文本型（text）”。提供待转换到UTF16格式的文本。
+
+    操作系统需求： Windows
+'/
+
+extern "C"
+
+sub krnln_fnStrToUTF16 cdecl(pRetData as PMDATA_INF,uArgCount as ulong, pArgInf as PMDATA_INF) 
+	dim pSrc as byte ptr=pArgInf[0].m_pText
+    if(pSrc=0 orelse *pSrc=0) then
+        pRetData->m_pBin=0
+        return
+    end if
+    dim nNum as long=MultiByteToWideChar(CP_ACP,0,pSrc,-1,NULL,0)
+    if(nNum<=0) then
+        pRetData->m_pBin=0
+        return
+    end if
+    
+    dim wcsUnicode as WCHAR ptr=new WCHAR[nNum]
+    nNum=MultiByteToWideChar(CP_ACP,0,pSrc,-1,wcsUnicode,nNum)
+    if(nNum<=0) then
+        delete[] wcsUnicode
+        pRetData->m_pBin=0
+        return
+    end if
+    wcsUnicode[nNum-1]=0
+    
+    nNum=WideCharToMultiByte(CP_UTF8,0,wcsUnicode,-1,NULL,0,NULL,NULL)
+    
+    if(nNum<=0) then
+        delete[] wcsUnicode
+        pRetData->m_pBin=0
+        return
+    end if
+    
+    dim pszUtf8 as byte ptr=new char[nNum]
+    nNum=WideCharToMultiByte(CP_UTF8,0,wcsUnicode,-1,pszUtf8,nNum,NULL,NULL)
+    
+    nNum=MultiByteToWideChar(CP_UTF8,0,pszUtf8,-1,NULL,0)
+    if(nNum>0) then
+        pSrc=Host_Malloc(nNum*2+2*sizeof(long))
+        if(pSrc<>0) then
+            *cast(long ptr,pSrc)=1
+            dim pDes as byte ptr=pSrc+2*sizeof(long)
+            nNum=MultiByteToWideChar(CP_UTF8,0,pszUtf8,-1,pDes,nNum)
+            *cast(long ptr,pSrc+sizeof(long))=nNum*2
+        end if
+    end if
+    
+    delete[] wcsUnicode
+    delete[] pszUtf8
+    pRetData->m_pBin=pSrc
+end sub
+
+end extern

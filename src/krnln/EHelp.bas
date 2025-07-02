@@ -24,7 +24,7 @@ sub GetPESizeOfImage()
     AppContext->PEAddrrEnd=cast(long,module)+AppContext->PESizeOfImage
 end sub
 
-function GetAryElementInf(pAryData as any ptr,pnElementCount as integer ptr) as ubyte ptr
+function GetAryElementInf(pAryData as any ptr,pnElementCount as long ptr) as ubyte ptr
 	dim pnData as long ptr=cast(any ptr,pAryData)
 	dim nArys as long=*pnData
 	pnData=pnData+1
@@ -46,7 +46,7 @@ function GetAryElementInf(pAryData as any ptr,pnElementCount as integer ptr) as 
 end function
 
 
-function GetDataTypeType(dtDataType as DATA_TYPE) as integer
+function GetDataTypeType(dtDataType as DATA_TYPE) as long
 	if dtDataType=_SDT_NULL then
 		return DTT_IS_NULL_DATA_TYPE
 	end if
@@ -56,7 +56,7 @@ function GetDataTypeType(dtDataType as DATA_TYPE) as integer
 end function
 
 
-function Host_Malloc(size as integer) as any ptr
+function Host_Malloc(size as long) as any ptr
 	function=allocate(size)
 end function
 
@@ -64,6 +64,6 @@ sub Host_Free(addr as any ptr)
 	deallocate(addr)
 end sub
 
-function Host_Realloc(addr as any ptr,size as integer) as any ptr
+function Host_Realloc(addr as any ptr,size as long) as any ptr
 	function=reallocate(addr,size)
 end function
