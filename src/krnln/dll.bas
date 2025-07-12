@@ -12,6 +12,7 @@ function DllMain stdcall(hModule as integer,ul_reason_for_call as integer,lpRese
 		InitContext()
 		
 		AppContext->InstanceHandle=hModule
+		AppContext->Heap=GetProcessHeap()
 		
 		EStartup()
 	end if

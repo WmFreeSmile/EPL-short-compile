@@ -47,6 +47,7 @@ type EContext
 	PEAddrrStart as ulong
 	PEAddrrEnd as ulong
 	
+	Heap as HANDLE
 end type
 
 
@@ -159,6 +160,8 @@ end extern
 
 extern AppContext as EContext ptr
 
+
+
 declare sub InitContext()
 declare sub FreeContext()
 declare sub GetPESizeOfImage()
@@ -166,6 +169,8 @@ declare sub GetPESizeOfImage()
 
 declare function GetAryElementInf(pAryData as any ptr,pnElementCount as long ptr) as ubyte ptr
 declare function GetDataTypeType(dtDataType as DATA_TYPE) as long
-declare function Host_Malloc(size as long) as any ptr
+declare function Host_Malloc(size as ulong) as any ptr
 declare sub Host_Free(addr as any ptr)
-declare function Host_Realloc(addr as any ptr,size as long) as any ptr
+declare function Host_Realloc(addr as any ptr,size as ulong) as any ptr
+
+declare sub ReportError(text as string)

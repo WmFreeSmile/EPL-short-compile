@@ -3,7 +3,7 @@
 #define NEWLINE		(!"\r\n")
 #define QUOTESYMBOL		(!"\34")
 
-
+declare sub ReportError(text as string)
 
 type ELIBINFO
 	dwLibFormatVer as ulong
@@ -41,25 +41,33 @@ extern "c"
 
 extern __eapp_info As EAPPINFO
 
-declare sub krnl_MExitProcess cdecl(nExitCode as long)
-declare sub ReportError(text as string)
-
-end extern
-
-extern "c"
-
 function krnl_GetDllCmdAddress(DllCmdNO as long) as any ptr
+	dim system_dll(25) as string= _ 
+		{ "kernel32.dll","ntdll.dll","advapi32.dll","user32.dll","gdi32.dll","gdiplus.dll","comctl32.dll", _
+		"uxtheme.dll","ole32.dll","oleaut32.dll","shell32.dll","ws2_32.dll","wininet.dll","wlanapi.dll", _
+		"iphlpapi.dll","setupapi.dll","cfgmgr32.dll","winmm.dll","oleacc.dll","crypt32.dll","urlmon.dll", _
+		"msvcrt.dll","ucrtbase.dll","comdlg32.dll","shlwapi.dll","kernelbase.dll" }
 	
-	' *__eapp_info.lpEDllNames[i],*__eapp_info.lpEDllSymbols[i]
-	dim hmod as HMODULE=LoadLibraryA(*__eapp_info.lpEDllNames[DllCmdNO])
-	if hmod<=0 then
-		ReportError "load dll fail"+QUOTESYMBOL+*__eapp_info.lpEDllNames[DllCmdNO]+QUOTESYMBOL
+	dim proc as FARPROC
+	
+	if len(*__eapp_info.lpEDllNames[DllCmdNO])=0 then
+		for i as integer=lbound(system_dll) to ubound(system_dll)
+			dim hmod as HMODULE=LoadLibraryA(system_dll(i))
+			proc=GetProcAddress(hmod,*__eapp_info.lpEDllSymbols[DllCmdNO])
+			if proc<>0 then
+				exit for
+			end if
+		next
+	else
+		dim hmod as HMODULE=LoadLibraryA(*__eapp_info.lpEDllNames[DllCmdNO])
+		if hmod=0 then
+			ReportError "load dll fail "+QUOTESYMBOL+*__eapp_info.lpEDllNames[DllCmdNO]+QUOTESYMBOL
+		end if
+		proc=GetProcAddress(hmod,*__eapp_info.lpEDllSymbols[DllCmdNO])
 	end if
 	
-	dim proc as FARPROC=GetProcAddress(hmod,*__eapp_info.lpEDllSymbols[DllCmdNO])
-	
-	if proc<=0 then
-		ReportError "get proc fail"+QUOTESYMBOL+*__eapp_info.lpEDllNames[DllCmdNO]+QUOTESYMBOL+QUOTESYMBOL+*__eapp_info.lpEDllSymbols[DllCmdNO]+QUOTESYMBOL
+	if proc=0 then
+		ReportError "get proc fail "+QUOTESYMBOL+*__eapp_info.lpEDllNames[DllCmdNO]+QUOTESYMBOL+QUOTESYMBOL+*__eapp_info.lpEDllSymbols[DllCmdNO]+QUOTESYMBOL
 	end if
 	
 	function=proc

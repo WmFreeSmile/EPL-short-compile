@@ -49,8 +49,8 @@ type EStrct
 end type
 
 sub help()
-    print "esc_compile tool 0.0"
-    print "Usage: esc_compile [options] file..."
+    print "esc_compile tool"
+    print "Usage: esc_compile [options] file"
     print "Options:"
     print "  -?, -h, --help                                                Display this information"
     print "  -o, --out <file>                                              Set target file"
@@ -492,18 +492,6 @@ sub main()
         end(1)
     end if
     
-    dim obj_path as string
-    dim compile_command as string
-    
-    obj_path=Left(full_target,Len(full_target)-Len(GetFileExtendName(full_target))-1)+".obj"
-    
-    compile_command=!"eplc \""+full_source+!"\" /o \""+obj_path+!"\" /obj /dll"
-    print compile_command
-    if system_(compile_command)<>0 then
-        print "error: Compilation command failed to run"
-        end(1)
-    end if
-    
     
     '将易源码格式识别出来
     dim File_EStrct as EStrct=EFileDump(full_source)
@@ -544,6 +532,24 @@ sub main()
                 CompileMode=dll
         end select
     end if
+    
+    dim obj_path as string
+    dim compile_command as string
+    
+    obj_path=Left(full_target,Len(full_target)-Len(GetFileExtendName(full_target))-1)+".obj"
+    
+    if CompileMode=exe then
+        compile_command=!"eplc \""+full_source+!"\" /o \""+obj_path+!"\" /obj"
+    elseif CompileMode=dll then
+        compile_command=!"eplc \""+full_source+!"\" /o \""+obj_path+!"\" /obj /dll"
+    end if
+    
+    print compile_command
+    if system_(compile_command)<>0 then
+        print "error: Compilation command failed to run"
+        end(1)
+    end if
+    
     
     for i as integer=lbound(File_EStrct.EFunc) to ubound(File_EStrct.EFunc)
         if File_EStrct.EFunc(i).func_name="EDllMain" andalso File_EStrct.EFunc(i).is_public then

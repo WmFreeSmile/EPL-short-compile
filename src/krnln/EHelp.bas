@@ -56,14 +56,46 @@ function GetDataTypeType(dtDataType as DATA_TYPE) as long
 end function
 
 
-function Host_Malloc(size as long) as any ptr
-	function=allocate(size)
+function Host_Malloc(size as ulong) as any ptr
+	'function=allocate(size)
+	
+	dim p as any ptr=HeapAlloc(AppContext->Heap,NULL,size)
+	if p=0 then
+		ReportError "Attempt to allocate "+str(size)+" bytes of memory failed"
+	end if
+	function=p
 end function
 
 sub Host_Free(addr as any ptr)
-	deallocate(addr)
+	'deallocate(addr)
+	
+	if HeapValidate(AppContext->Heap,HEAP_NO_SERIALIZE,addr)=0 then
+		return
+	end if
+	
+	HeapFree(AppContext->Heap,NULL,addr)
 end sub
 
-function Host_Realloc(addr as any ptr,size as long) as any ptr
-	function=reallocate(addr,size)
+function Host_Realloc(addr as any ptr,size as ulong) as any ptr
+	'function=reallocate(addr,size)
+	
+	dim p as any ptr
+	
+	if addr<>0 then
+		p=HeapReAlloc(AppContext->Heap,NULL,addr,size)
+	else
+		p=HeapAlloc(AppContext->Heap,NULL,size)
+	end if
+	
+	if p=0 then
+		ReportError "Attempt to allocate "+str(size)+" bytes of memory failed"
+	end if
+	
+	function=p
 end function
+
+
+sub ReportError(text as string)
+	MessageBox(0,text,"Error",MB_ICONERROR)
+	krnl_MExitProcess(-1)
+end sub

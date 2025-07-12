@@ -6,12 +6,7 @@
 #define NEWLINE		(!"\r\n")
 #define QUOTESYMBOL		(!"\34")
 
-extern "c"
-
-sub ReportError(text as string)
-	MessageBox(0,text,"Error",MB_ICONERROR)
-	krnl_MExitProcess(-1)
-end sub
+extern "C"
 
 sub krnl_MReportError cdecl(nMsg as long,dwMethodId as long,dwPos as long)
 	dim sErrorListForE(10) as string= _ 
@@ -260,6 +255,8 @@ end sub
 
 function WinMain stdcall(a as integer,b as integer,c as integer,d as integer) as integer
 	InitContext()
+	
+	AppContext->Heap=GetProcessHeap()
 	
 	function=EStartup()
 end function

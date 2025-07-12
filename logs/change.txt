@@ -66,3 +66,13 @@ krnln_fnStrToUTF8 文本到UTF8
 krnln_fnUTF8ToStr UTF8到文本
 krnln_fnStrToUTF16 文本到UTF16
 krnln_fnUTF16ToStr UTF16到文本
+
+2025-7-12 更新：
+
+添加下列核心库子程序：
+
+krnln_fnRpSubText 子文本替换
+krnln_fnSplit 分割文本
+
+[修复] 堆内存无法使用 LocalSize 获取大小
+[修复] Exe 编译提示 Dll 错误
